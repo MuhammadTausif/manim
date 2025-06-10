@@ -8,6 +8,8 @@ __all__ = [
     "ArrowCircleTip",
     "ArrowSquareTip",
     "ArrowSquareFilledTip",
+    "ArrowDiamondTip",
+    "ArrowDiamondFilledTip",
     "ArrowTriangleTip",
     "ArrowTriangleFilledTip",
     "StealthTip",
@@ -337,6 +339,36 @@ class ArrowSquareTip(ArrowTip, Square):
 
 class ArrowSquareFilledTip(ArrowSquareTip):
     r"""Square arrow tip with filled tip."""
+
+    def __init__(
+        self, fill_opacity: float = 1, stroke_width: float = 0, **kwargs: Any
+    ) -> None:
+        super().__init__(fill_opacity=fill_opacity, stroke_width=stroke_width, **kwargs)
+
+
+class ArrowDiamondTip(ArrowSquareTip):
+    r"""Diamond-shaped arrow tip."""
+
+    def __init__(
+        self,
+        fill_opacity: float = 0,
+        stroke_width: float = 3,
+        length: float = DEFAULT_ARROW_TIP_LENGTH,
+        start_angle: float = PI,
+        **kwargs: Any,
+    ) -> None:
+        super().__init__(
+            fill_opacity=fill_opacity,
+            stroke_width=stroke_width,
+            length=length,
+            start_angle=start_angle,
+            **kwargs,
+        )
+        self.rotate(PI / 4)
+
+
+class ArrowDiamondFilledTip(ArrowDiamondTip):
+    r"""Diamond-shaped arrow tip with filled tip."""
 
     def __init__(
         self, fill_opacity: float = 1, stroke_width: float = 0, **kwargs: Any
